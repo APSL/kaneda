@@ -47,13 +47,13 @@ class Metrics(object):
         """
         self._report(name, 'event', text, tags)
 
-    def custom(self, name, metric, value, tags=None, _id=None):
+    def custom(self, name, metric, value, tags=None, id_=None):
         """
         Send a custom metric report.
 
-        >>> metrics.custom('hotel.availability.response_data', metric='xml', value={'status': 'ok', 'xml': ...}, _id='2B75D750')
+        >>> metrics.custom('hotel.availability.response_data', metric='xml', value={'status': 'ok', 'xml': ...}, id_='2B75D750')
         """
-        self._report(name, metric, value, tags, _id)
+        self._report(name, metric, value, tags, id_)
 
     class _TimedContextManagerDecorator(object):
         """
@@ -114,9 +114,5 @@ class Metrics(object):
         """
         return self._TimedContextManagerDecorator(self, name, tags, use_ms)
 
-    def _report(self, name, metric, value, tags, _id=None):
-        if tags:
-            if not isinstance(value, dict):
-                value = {'value': value}
-            value.update({'tags': tags})
-        self.backend.report(name, metric, value, _id)
+    def _report(self, name, metric, value, tags, id_=None):
+        self.backend.report(name, metric, value, tags, id_)

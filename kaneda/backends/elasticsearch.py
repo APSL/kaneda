@@ -30,8 +30,8 @@ class ElasticsearchBackend(BaseBackend):
         self.index_name = index_name
         self.app_name = app_name
 
-    def _get_payload(self, name, value):
-        payload = super(ElasticsearchBackend, self)._get_payload(name, value)
+    def _get_payload(self, name, value, tags):
+        payload = super(ElasticsearchBackend, self)._get_payload(name, value, tags)
         payload['app_name'] = self.app_name
         payload['@timestamp'] = datetime.utcnow()
         return payload
@@ -39,5 +39,6 @@ class ElasticsearchBackend(BaseBackend):
     def _get_index_name(self):
         return '{}-{}'.format(self.index_name, datetime.utcnow().strftime('%Y.%m.%d'))
 
-    def report(self, name, metric, value, _id):
-        self.client.index(index=self._get_index_name(), doc_type=metric, id=_id, body=self._get_payload(name, value))
+    def report(self, name, metric, value, tags, id_):
+        payload = self._get_payload(name, value, tags)
+        self.client.index(index=self._get_index_name(), doc_type=metric, id=id_, body=payload)

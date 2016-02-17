@@ -30,14 +30,14 @@ class MongoBackend(BaseBackend):
         db = client[db_name]
         self.collection = db[collection_name]
 
-    def _get_payload(self, name, value, metric, _id):
-        payload = super(MongoBackend, self)._get_payload(name, value)
+    def _get_payload(self, name, value, metric, tags, id_):
+        payload = super(MongoBackend, self)._get_payload(name, value, tags)
         payload['timestamp'] = datetime.utcnow()
         payload['metric'] = metric
-        if _id:
-            payload['_id'] = _id
+        if id_:
+            payload['_id'] = id_
         return payload
 
-    def report(self, name, metric, value, _id):
-        payload = self._get_payload(name, value, metric, _id)
+    def report(self, name, metric, value, tags, id_):
+        payload = self._get_payload(name, value, metric, tags, id_)
         self.collection.insert_one(payload)
