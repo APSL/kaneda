@@ -1,24 +1,13 @@
-# -*- coding: utf-8 -*-
 import pytest
 
 from kaneda import Metrics
-from kaneda.backends import BaseBackend
-
-
-class DummyBackend(BaseBackend):
-    reported_data = []
-
-    def report(self, name, *args, **kwargs):
-        payload = self._get_payload(name, kwargs)
-        self.reported_data.append(payload)
 
 
 class TestMetricReporter(object):
 
     @pytest.fixture
-    def metrics(self):
-        backend = DummyBackend()
-        return Metrics(backend=backend)
+    def metrics(self, dummy_backend):
+        return Metrics(backend=dummy_backend)
 
     def test_gauge(self, metrics):
         metrics.gauge('users.online', 123)
@@ -36,7 +25,7 @@ class TestMetricReporter(object):
         metrics.event('Man down!', 'This server needs assistance.')
 
     def test_custom(self, metrics):
-        metrics.custom(name='availability.request', metric='xml_response', _id='2B75D750',
+        metrics.custom(name='availability.request', metric='xml_response', id_='2B75D750',
                        value={'status': 'ok', 'xml': '<xml><test attr="test"></test></xml>'}, tags=['test'])
 
     def test_timed_context_manager(self, metrics):
