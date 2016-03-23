@@ -26,5 +26,3 @@ class TestMetrics(object):
             assert 'test_gauge' in result
 
 
-
-

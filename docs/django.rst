@@ -1,3 +1,5 @@
+.. _django:
+
 Django Setup
 ============
 
@@ -10,8 +12,7 @@ Kaneda can be use with Django as a mechanism to reporting metrics and events.
 
 2. Add :code:`django_kaneda` to :code:`INSTALLED_APPS` in :file:`settings.py`.
 
-3. Set :code:`KANEDA_BACKEND` and the properly configuration of your selected backend in :file:`settings.py`. If we want
-to use Elasticsearch our configuration will be something like this::
+3. Set :code:`KANEDA_BACKEND` and the properly configuration of your selected backend in :file:`settings.py`. If you want to use Elasticsearch our configuration will be something like this::
 
     KANEDA_BACKEND = 'kaneda.backends.ElasticsearchBackend'
     KANEDA_ELASTIC_INDEX_NAME = 'kaneda'
@@ -76,22 +77,22 @@ Available settings
 Elasticsearch
 -------------
 KANEDA_ELASTIC_INDEX_NAME (='kaneda')
-  name of the Elasticsearch index used to store metrics data. Default name format will be app_name-YYYY.MM.DD.
+  Name of the Elasticsearch index used to store metrics data. Default name format will be app_name-YYYY.MM.DD.
 
 KANEDA_ELASTIC_APP_NAME (='default')
-  name of the app/project where metrics are used.
+  Name of the app/project where metrics are used.
 
 KANEDA_ELASTIC_HOST (='localhost')
-  server host.
+  Server host.
 
 KANEDA_ELASTIC_PORT (=9200)
-  server port.
+  Server port.
 
 KANEDA_ELASTIC_USER (=None)
-  http auth username.
+  HTTP auth username.
 
 KANEDA_ELASTIC_PASSWORD (=None)
-  http auth password.
+  HTTP auth password.
 
 KANEDA_ELASTIC_TIMEOUT (=0.3)
   Elasticsearch connection timeout (seconds).
@@ -99,16 +100,16 @@ KANEDA_ELASTIC_TIMEOUT (=0.3)
 MongoDB
 -------
 KANEDA_MONGO_DB_NAME (='kaneda')
-  name of the MongoDB database.
+  Name of the MongoDB database.
 
 KANEDA_MONGO_COLLECTION_NAME (='default')
-  name of the MongoDB collection used to store metric data.
+  Name of the MongoDB collection used to store metric data.
 
 KANEDA_MONGO_HOST (='localhost')
-  server host.
+  Server host.
 
 KANEDA_MONGO_PORT (=27017)
-  server port.
+  Server port.
 
 KANEDA_MONGO_TIMEOUT (=300)
   MongoDB connection timeout (milliseconds).
@@ -116,10 +117,10 @@ KANEDA_MONGO_TIMEOUT (=300)
 Debug
 -----
 KANEDA_DEBUG (=True)
-  use Kaneda in debug mode.
+  Use Kaneda in debug mode.
 
 KANEDA_LOGGER (=None)
-  name of a previously defined logger, to use in debug mode.
+  Name of a previously defined logger, to use in debug mode.
 
 KANEDA_LOGGER_FILENAME (=None)
-  name of the file where logger will store the metrics, to use in debug mode.
+  Name of the file where logger will store the metrics, to use in debug mode.

@@ -19,5 +19,7 @@ Example::
    django
    metrics
    backends
+   queues
+   settings
    changelog
 

@@ -25,6 +25,8 @@ class MongoBackend(BaseBackend):
     :param port: server port.
     :param timeout: MongoDB connection timeout (milliseconds).
     """
+    settings_namespace = 'MONGO'
+
     def __init__(self, db_name, collection_name, client=None, connection_url=None, host=None, port=None, timeout=300):
         if not MongoClient:
             raise ImproperlyConfigured('You need to install the pymongo library to use the MongoDB backend.')

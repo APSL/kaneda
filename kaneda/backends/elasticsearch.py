@@ -25,10 +25,11 @@ class ElasticsearchBackend(BaseBackend):
     It can be used passing a single connection_url (a string) or passing multiple connection_urls (a list).
     :param host: server host. It can be used passing a single host (a string) or passing multiple hosts (a list).
     :param port: server port.
-    :param user: http auth username.
-    :param password: http auth password.
+    :param user: HTTP auth username.
+    :param password: HTTP auth password.
     :param timeout: Elasticsearch connection timeout (seconds).
     """
+    settings_namespace = 'ELASTIC'
 
     def __init__(self, index_name, app_name, client=None, connection_url=None, host=None, port=None,
                  user=None, password=None, timeout=0.3):
@@ -66,4 +67,3 @@ class ElasticsearchBackend(BaseBackend):
         except Exception as e:
             logger = logging.getLogger(__name__)
             logger.exception(e)
-

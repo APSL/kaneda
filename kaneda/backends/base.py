@@ -1,11 +1,15 @@
-# -*- coding: utf-8 -*-
 import socket
 
 
 class BaseBackend(object):
     """
-    Base backend
+    Base class for backend reporting storage.
+
+    settings_namespace is a class attribute that will be used to get the needed
+    parameters to create new backend instance from a settings file.
     """
+    settings_namespace = None
+
     def report(self, name, metric, value, tags, id_):
         raise NotImplemented()
 

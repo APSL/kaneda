@@ -1,7 +1,7 @@
 Backends
 ========
 
-Kaneda provides bultin backends to store metrics and events in a persistent storage. If you want to use your
+Kaneda provides builtin backends to store metrics and events in a persistent storage. If you want to use your
 custom backend you need to subclass :code:`BaseBackend` and implement your custom :code:`report` method which
 is the responsible to store the metrics data.
 

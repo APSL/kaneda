@@ -1,11 +1,25 @@
+from __future__ import absolute_import
+
 from time import time
 from functools import wraps
 
+from kaneda.utils import get_backend, get_kaneda_objects
+
 
 class Metrics(object):
+    """
+    Metrics reporting class
 
-    def __init__(self, backend):
+    :param backend: instance of kaneda.backends. It is the responsible to store the reported data.
+    :param queue: instance of kaneda.queues. It is the responsible to store the reported data asynchronously.
+
+    If none of the parameters are passed it tries get the backend from kaneda settings file.
+    """
+    def __init__(self, backend=None, queue=None):
         self.backend = backend
+        self.queue = queue
+        if not self.backend and not self.queue:
+            self.backend, self.queue = get_kaneda_objects()
 
     def gauge(self, name, value, tags=None):
         """
@@ -90,7 +104,7 @@ class Metrics(object):
     def timed(self, name=None, tags=None, use_ms=None):
         """
         Measure the amount of time of a function (using a decorator) or a piece of
-        code (using a context manager). If _name_ is not provided while using the decorator it
+        code (using a context manager). If name is not provided while using the decorator it
         will be used the name of the module and the function.
         ::
 
@@ -106,4 +120,8 @@ class Metrics(object):
         return self._TimedContextManagerDecorator(self, name, tags, use_ms)
 
     def _report(self, name, metric, value, tags, id_=None):
-        return self.backend.report(name, metric, value, tags, id_)
+        if self.backend:
+            return self.backend.report(name, metric, value, tags, id_)
+        elif self.queue:
+            return self.queue.report(name, metric, value, tags, id_)
+
