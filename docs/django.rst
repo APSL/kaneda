@@ -34,45 +34,92 @@ With this, you can use Kaneda in everyplace of your Django project::
             metrics.increment('user_profile.views')
             return super(UserProfileView, self).get(request, *args, **kwargs)
 
+Debug mode
+~~~~~~~~~~
+You can use Kaneda in debug mode with a logger as backend. Simply set :code:`KANEDA_DEBUG` to `True` to report everything
+to a logger instead a persistent backend. Furthermore, you can set a previously defined logger on :file:`settings.py` and use as
+your debug logger::
+
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'formatters': {
+            'with_timestamp': {
+                'format': '%(asctime)s - %(name)s - %(message)s'
+            }
+        },
+        'handlers': {
+            'file': {
+                'level': 'INFO',
+                'class': 'logging.FileHandler',
+                'filename': '/tmp/kaneda-demo.log',
+                'formatter': 'with_timestamp'
+            },
+        },
+        'loggers': {
+            'kaneda.demo': {
+                'handlers': ['file'],
+                'level': 'INFO',
+                'propagate': True,
+            },
+        },
+    }
+
+    KANEDA_DEBUG = True
+    KANEDA_LOGGER = 'kaneda.demo'
+
+Alternatively you can set :code:`KANEDA_LOGGER_FILENAME` instead of :code:`KANEDA_LOGGER` to store the reporting results
+in a specific filename.
 
 Available settings
 ~~~~~~~~~~~~~~~~~~
 Elasticsearch
 -------------
-ELASTIC_INDEX_NAME (='kaneda')
+KANEDA_ELASTIC_INDEX_NAME (='kaneda')
   name of the Elasticsearch index used to store metrics data. Default name format will be app_name-YYYY.MM.DD.
 
-ELASTIC_APP_NAME (='default')
+KANEDA_ELASTIC_APP_NAME (='default')
   name of the app/project where metrics are used.
 
-ELASTIC_HOST (='localhost')
+KANEDA_ELASTIC_HOST (='localhost')
   server host.
 
-ELASTIC_PORT (=9200)
+KANEDA_ELASTIC_PORT (=9200)
   server port.
 
-ELASTIC_USER (=None)
+KANEDA_ELASTIC_USER (=None)
   http auth username.
 
-ELASTIC_PASSWORD (=None)
+KANEDA_ELASTIC_PASSWORD (=None)
   http auth password.
 
 MongoDB
 -------
-MONGO_DB_NAME (='kaneda')
+KANEDA_MONGO_DB_NAME (='kaneda')
   name of the MongoDB database.
 
-MONGO_COLLECTION_NAME (='default')
+KANEDA_MONGO_COLLECTION_NAME (='default')
   name of the MongoDB collection used to store metric data.
 
-MONGO_HOST (='localhost')
+KANEDA_MONGO_HOST (='localhost')
   server host.
 
-MONGO_PORT (=27017)
+KANEDA_MONGO_PORT (=27017)
   server port.
 
-MONGO_USER (=None)
+KANEDA_MONGO_USER (=None)
   auth username.
 
-MONGO_PASSWORD (=None)
+KANEDA_MONGO_PASSWORD (=None)
   auth password.
+
+Debug
+-----
+KANEDA_DEBUG (=True)
+  use Kaneda in debug mode.
+
+KANEDA_LOGGER (=None)
+  name of a previously defined logger, to use in debug mode.
+
+KANEDA_LOGGER_FILENAME (=None)
+  name of the file where logger will store the metrics, to use in debug mode.

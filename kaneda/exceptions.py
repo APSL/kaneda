@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-__all__ = ['ImproperlyConfigured']
+__all__ = ['ImproperlyConfigured', 'UnexistingBackendClass']
 
 
 class ImproperlyConfigured(ImportError):

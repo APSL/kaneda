@@ -36,3 +36,12 @@ to perform data analysis.
 
 .. autoclass:: kaneda.backends.MongoBackend
     :members:
+
+
+Logger
+~~~~~~
+
+You can use a logger instance of the logging library from the Python standard lib. Useful for debugging.
+
+.. autoclass:: kaneda.backends.LoggerBackend
+    :members:
