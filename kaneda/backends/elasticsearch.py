@@ -1,5 +1,6 @@
 from __future__ import absolute_import
 
+import logging
 from datetime import datetime
 
 try:
@@ -54,5 +55,9 @@ class ElasticsearchBackend(BaseBackend):
 
     def report(self, name, metric, value, tags, id_):
         payload = self._get_payload(name, value, tags)
-        self.client.index(index=self._get_index_name(), doc_type=metric, id=id_, body=payload)
+        try:
+            self.client.index(index=self._get_index_name(), doc_type=metric, id=id_, body=payload)
+        except Exception as e:
+            logger = logging.getLogger(__name__)
+            logger.exception(e)
 

@@ -1,5 +1,6 @@
 from __future__ import absolute_import
 
+import logging
 from datetime import datetime
 
 try:
@@ -48,4 +49,8 @@ class MongoBackend(BaseBackend):
 
     def report(self, name, metric, value, tags, id_):
         payload = self._get_payload(name, value, metric, tags, id_)
-        self.collection.insert_one(payload)
+        try:
+            self.collection.insert_one(payload)
+        except Exception as e:
+            logger = logging.getLogger(__name__)
+            logger.exception(e)
