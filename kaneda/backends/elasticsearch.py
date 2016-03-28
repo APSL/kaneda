@@ -18,15 +18,27 @@ class ElasticsearchBackend(BaseBackend):
 
     :param index_name: name of the Elasticsearch index used to store metrics data. Default name format will be app_name-YYYY.MM.DD.
     :param app_name: name of the app/project where metrics are used.
+    :param client: client instance of Elasticsearch class.
+    :param connection_url: Elasticsearch connection url (https://user:secret@localhost:9200).
     :param host: server host.
     :param port: server port.
     :param username: http auth username.
     :param password: http auth password.
     """
-    def __init__(self, index_name, app_name, host, port, username, password):
+
+    def __init__(self, index_name, app_name, client=None, connection_url=None, host=None, port=None,
+                 username=None, password=None):
         if not Elasticsearch:
-            raise ImproperlyConfigured('You need to install the elasticsearch library to use the Elasticsearch backend.')
-        self.client = Elasticsearch([{"host": host, "port": port, 'http_auth': '{}:{}'.format(username, password)}])
+            raise ImproperlyConfigured(
+                'You need to install the elasticsearch library to use the Elasticsearch backend.')
+        if client:
+            if not isinstance(client, Elasticsearch):
+                raise ImproperlyConfigured('"client" parameter is not an instance of Elasticsearch client')
+            self.client = client
+        elif connection_url:
+            self.client = Elasticsearch([connection_url])
+        else:
+            self.client = Elasticsearch([{"host": host, "port": port, 'http_auth': '{}:{}'.format(username, password)}])
         self.index_name = index_name
         self.app_name = app_name
 
@@ -42,3 +54,4 @@ class ElasticsearchBackend(BaseBackend):
     def report(self, name, metric, value, tags, id_):
         payload = self._get_payload(name, value, tags)
         self.client.index(index=self._get_index_name(), doc_type=metric, id=id_, body=payload)
+

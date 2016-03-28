@@ -107,12 +107,6 @@ KANEDA_MONGO_HOST (='localhost')
 KANEDA_MONGO_PORT (=27017)
   server port.
 
-KANEDA_MONGO_USER (=None)
-  auth username.
-
-KANEDA_MONGO_PASSWORD (=None)
-  auth password.
-
 Debug
 -----
 KANEDA_DEBUG (=True)
