@@ -1,6 +1,13 @@
 Changelog
 =========
 
+0.3 (2016-03-28)
+~~~~~~~~~~~~~~~~
+* Add LoggerBackend. Useful for debugging
+* Add exeception treatment on backend report methods.
+* Add connection timeout for storage backends.
+* Storage backends now support passing client or connection url as parameters instead all parameters.
+
 0.2 (2016-02-17)
 ~~~~~~~~~~~~~~~~
 * Refactor backend payload build method to unpack value field when is a dict.

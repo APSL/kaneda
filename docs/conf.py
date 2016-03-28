@@ -22,8 +22,8 @@ master_doc = 'index'
 project = u'kaneda'
 copyright = u'2016, APSL'
 
-version = '0.1'
-release = '0.1'
+version = '0.3'
+release = '0.3'
 exclude_patterns = ['_build']
 pygments_style = 'sphinx'
 
