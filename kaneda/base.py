@@ -115,4 +115,4 @@ class Metrics(object):
         return self._TimedContextManagerDecorator(self, name, tags, use_ms)
 
     def _report(self, name, metric, value, tags, id_=None):
-        self.backend.report(name, metric, value, tags, id_)
+        return self.backend.report(name, metric, value, tags, id_)

@@ -36,5 +36,5 @@ class LoggerBackend(BaseBackend):
 
     def report(self, name, metric, value, tags, id_):
         payload = self._get_payload(name, value, metric, tags, id_)
-        self.logger.info(payload)
+        return self.logger.info(payload)
 
