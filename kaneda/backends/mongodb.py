@@ -22,8 +22,9 @@ class MongoBackend(BaseBackend):
     :param connection_url: Mongo connection url (mongodb://localhost:27017/).
     :param host: server host.
     :param port: server port.
+    :param timeout: MongoDB connection timeout (milliseconds).
     """
-    def __init__(self, db_name, collection_name, client=None, connection_url=None, host=None, port=None):
+    def __init__(self, db_name, collection_name, client=None, connection_url=None, host=None, port=None, timeout=300):
         if not MongoClient:
             raise ImproperlyConfigured('You need to install the pymongo library to use the MongoDB backend.')
         if client:
@@ -31,9 +32,9 @@ class MongoBackend(BaseBackend):
                 raise ImproperlyConfigured('"client" parameter is not an instance of MongoClient client.')
             self.client = client
         elif connection_url:
-            self.client = MongoClient(connection_url)
+            self.client = MongoClient(connection_url, serverSelectionTimeoutMS=timeout)
         else:
-            self.client = MongoClient(host=host, port=port)
+            self.client = MongoClient(host=host, port=port, serverSelectionTimeoutMS=timeout)
         db = self.client[db_name]
         self.collection = db[collection_name]
 

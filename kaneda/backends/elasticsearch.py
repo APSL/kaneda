@@ -24,10 +24,11 @@ class ElasticsearchBackend(BaseBackend):
     :param port: server port.
     :param username: http auth username.
     :param password: http auth password.
+    :param timeout: Elasticsearch connection timeout (seconds).
     """
 
     def __init__(self, index_name, app_name, client=None, connection_url=None, host=None, port=None,
-                 username=None, password=None):
+                 username=None, password=None, timeout=0.3):
         if not Elasticsearch:
             raise ImproperlyConfigured(
                 'You need to install the elasticsearch library to use the Elasticsearch backend.')
@@ -36,9 +37,9 @@ class ElasticsearchBackend(BaseBackend):
                 raise ImproperlyConfigured('"client" parameter is not an instance of Elasticsearch client')
             self.client = client
         elif connection_url:
-            self.client = Elasticsearch([connection_url])
+            self.client = Elasticsearch([connection_url], timeout=timeout)
         else:
-            self.client = Elasticsearch([{"host": host, "port": port, 'http_auth': '{}:{}'.format(username, password)}])
+            self.client = Elasticsearch([host], port=port, http_auth=(username, password), timeout=timeout)
         self.index_name = index_name
         self.app_name = app_name
 

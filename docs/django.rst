@@ -93,6 +93,9 @@ KANEDA_ELASTIC_USER (=None)
 KANEDA_ELASTIC_PASSWORD (=None)
   http auth password.
 
+KANEDA_ELASTIC_TIMEOUT (=0.3)
+  Elasticsearch connection timeout (seconds).
+
 MongoDB
 -------
 KANEDA_MONGO_DB_NAME (='kaneda')
@@ -106,6 +109,9 @@ KANEDA_MONGO_HOST (='localhost')
 
 KANEDA_MONGO_PORT (=27017)
   server port.
+
+KANEDA_MONGO_TIMEOUT (=300)
+  MongoDB connection timeout (milliseconds).
 
 Debug
 -----
