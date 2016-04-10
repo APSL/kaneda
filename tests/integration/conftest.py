@@ -10,7 +10,7 @@ from kaneda.backends import ElasticsearchBackend, LoggerBackend, MongoBackend
 @pytest.fixture
 def elasticsearch_backend():
     return ElasticsearchBackend(index_name='kaneda', app_name='testing', host='localhost', port=9200,
-                                username='test', password='test')
+                                user='test', password='test')
 
 
 @pytest.fixture

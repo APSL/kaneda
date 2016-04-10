@@ -25,13 +25,13 @@ class ElasticsearchBackend(BaseBackend):
     It can be used passing a single connection_url (a string) or passing multiple connection_urls (a list).
     :param host: server host. It can be used passing a single host (a string) or passing multiple hosts (a list).
     :param port: server port.
-    :param username: http auth username.
+    :param user: http auth username.
     :param password: http auth password.
     :param timeout: Elasticsearch connection timeout (seconds).
     """
 
     def __init__(self, index_name, app_name, client=None, connection_url=None, host=None, port=None,
-                 username=None, password=None, timeout=0.3):
+                 user=None, password=None, timeout=0.3):
         if not Elasticsearch:
             raise ImproperlyConfigured(
                 'You need to install the elasticsearch library to use the Elasticsearch backend.')
@@ -46,7 +46,7 @@ class ElasticsearchBackend(BaseBackend):
         else:
             if not isinstance(host, list):
                 host = [host]
-            self.client = Elasticsearch(host, port=port, http_auth=(username, password), timeout=timeout)
+            self.client = Elasticsearch(host, port=port, http_auth=(user, password), timeout=timeout)
         self.index_name = index_name
         self.app_name = app_name
 

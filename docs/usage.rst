@@ -15,6 +15,6 @@ The following example it shows how to send metrics with Elasticsearch as a backe
     from kaneda import Metrics
 
     backend = ElasticsearchBackend(index_name='myindex', app_name='myapp', host='localhost',
-                                   port=9200, username='kaneda', password='kaneda')
+                                   port=9200, user='kaneda', password='kaneda')
     metrics = Metrics(backend)
     metrics.gauge('answer_of_life', 42)
