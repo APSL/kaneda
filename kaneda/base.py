@@ -11,7 +11,7 @@ class Metrics(object):
         """
         Record the value of a gauge.
 
-        >>> metrics.gauge('users.notifications', 13, tags=['', ''])
+        >>> metrics.gauge('users.notifications', 13, tags=['new_message', 'follow_request'])
         """
         return self._report(name, 'gauge', value, tags)
 
@@ -57,8 +57,7 @@ class Metrics(object):
 
     class _TimedContextManagerDecorator(object):
         """
-        A context manager and a decorator which will report the elapsed time in
-        the context OR in a function call.
+        Class that implements the context manager and the decorator for "timed" method.
         """
 
         def __init__(self, metrics, name=None, tags=None, use_ms=None):
@@ -72,7 +71,7 @@ class Metrics(object):
             Decorator which returns the elapsed time of the function call.
             """
             if not self.name:
-                self.name = '%s.%s' % (func.__module__, func.__name__)
+                self.name = u'{0:s}.{1:s}'.format(func.__module__, func.__name__)
 
             @wraps(func)
             def wrapped(*args, **kwargs):
@@ -90,27 +89,19 @@ class Metrics(object):
 
     def timed(self, name=None, tags=None, use_ms=None):
         """
-        A decorator or context manager that will measure the distribution of a
-        function's/context's run time. If the metric is not defined as a decorator, the module
-        name and function name will be used.
+        Measure the amount of time of a function (using a decorator) or a piece of
+        code (using a context manager). If _name_ is not provided while using the decorator it
+        will be used the name of the module and the function.
         ::
 
-            @metrics.timed('user.query.time')
-            def get_user(user_id):
-                # Do what you need to ...
+            # With decorator
+            @metrics.timed('request.response_time')
+            def perform_request(params):
                 pass
 
-            # Is equivalent to ...
-            with metrics.timed('user.query.time'):
-                # Do what you need to ...
+            # With context manager
+            with metrics.timed('request.response_time'):
                 pass
-
-            # Is equivalent to ...
-            start = time.time()
-            try:
-                get_user(user_id)
-            finally:
-                metrics.timing('user.query.time', time.time() - start)
         """
         return self._TimedContextManagerDecorator(self, name, tags, use_ms)
 
