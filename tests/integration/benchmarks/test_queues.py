@@ -1,6 +1,9 @@
 from kaneda import Metrics
 
+from . import mark_benchmark
 
+
+@mark_benchmark
 class TestQueues(object):
 
     def test_benchmark_celery(self, celery_queue, benchmark):

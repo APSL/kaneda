@@ -1,6 +1,8 @@
 from kaneda import Metrics
+from . import mark_benchmark
 
 
+@mark_benchmark
 class TestBenchmarksBackends(object):
 
     def test_benchmark_elasticsearch(self, elasticsearch_backend, benchmark):
