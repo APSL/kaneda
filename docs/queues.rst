@@ -3,7 +3,7 @@
 Queues
 ======
 
-Kaneda provides builtin queues to store metrics and events to perform :ref:`async`. If you want to use your
+Kaneda provides builtin queues to store metrics and events to perform :ref:`asynchronous reporting <async>`. If you want to use your
 custom asynchronous queue system you need to subclass :code:`BaseQueue` and implement your custom :code:`report` method
 which is the responsible to pass metrics data to a job queue.
 

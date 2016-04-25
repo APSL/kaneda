@@ -7,10 +7,11 @@ Changelog
 
 0.3 (2016-03-28)
 ~~~~~~~~~~~~~~~~
-* Add LoggerBackend. Useful for debugging
+* Add LoggerBackend.
 * Add exeception treatment on backend report methods.
 * Add connection timeout for storage backends.
 * Storage backends now support passing client or connection url as parameters instead all parameters.
+* Add support to use django-kaneda on debug mode.
 
 0.2 (2016-02-17)
 ~~~~~~~~~~~~~~~~

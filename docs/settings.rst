@@ -1,7 +1,7 @@
 Settings
 ========
 
-Kaneda can be used with a settings file as a similar way to use with :ref:`Django <django>`. Simply define a
+Kaneda can be used with a settings file as the same way to use with :ref:`Django <django>`. Simply define a
 :file:`kanedasettings.py` file with the backend or queue settings. Alternatively you can define the environment variable
 `DEFAULT_SETTINGS_ENVAR`  pointing to the desired settings filename.
 

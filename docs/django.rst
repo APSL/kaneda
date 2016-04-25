@@ -5,14 +5,9 @@ Django Setup
 
 Kaneda can be use with Django as a mechanism to reporting metrics and events.
 
-1. Install `kaneda` and `django-kaneda` packages::
+1. Add :code:`django_kaneda` to :code:`INSTALLED_APPS` in :file:`settings.py`.
 
-    pip install git+https://gitlab.apsl.net/apsl/kaneda.git
-    pip install git+https://gitlab.apsl.net/apsl/django-kaneda.git
-
-2. Add :code:`django_kaneda` to :code:`INSTALLED_APPS` in :file:`settings.py`.
-
-3. Set :code:`KANEDA_BACKEND` and the properly configuration of your selected backend in :file:`settings.py`. If you want to use Elasticsearch our configuration will be something like this::
+2. Set :code:`KANEDA_BACKEND` and the properly configuration of your selected backend in :file:`settings.py`. If you want to use Elasticsearch our configuration will be something like this::
 
     KANEDA_BACKEND = 'kaneda.backends.ElasticsearchBackend'
     KANEDA_ELASTIC_INDEX_NAME = 'kaneda'
@@ -21,6 +16,11 @@ Kaneda can be use with Django as a mechanism to reporting metrics and events.
     KANEDA_ELASTIC_PORT = 9200
     KANEDA_ELASTIC_USER = 'user'
     KANEDA_ELASTIC_PASSWORD = 'pass'
+
+Alternatively you can set :code:`KANEDA_QUEUE` to specify a :ref:`queue <queues>` configuration to use Kaneda in :ref:`async mode <async>`::
+
+    KANEDA_BACKEND = 'kaneda.queues.CeleryQueue'
+    KANEDA_CELERY_BROKER = 'redis://localhost:6379/0'
 
 With this, you can use Kaneda in everyplace of your Django project::
 
@@ -82,10 +82,13 @@ KANEDA_ELASTIC_INDEX_NAME (='kaneda')
 KANEDA_ELASTIC_APP_NAME (='default')
   Name of the app/project where metrics are used.
 
-KANEDA_ELASTIC_HOST (='localhost')
+KANEDA_ELASTIC_CONNECTION_URL (=None)
+  Elasticsearch connection url (https://user:secret@localhost:9200).
+
+KANEDA_ELASTIC_HOST (=None)
   Server host.
 
-KANEDA_ELASTIC_PORT (=9200)
+KANEDA_ELASTIC_PORT (=None)
   Server port.
 
 KANEDA_ELASTIC_USER (=None)
@@ -105,14 +108,33 @@ KANEDA_MONGO_DB_NAME (='kaneda')
 KANEDA_MONGO_COLLECTION_NAME (='default')
   Name of the MongoDB collection used to store metric data.
 
-KANEDA_MONGO_HOST (='localhost')
+KANEDA_MONGO_CONNECTION_URL (=None)
+  Mongo connection url (mongodb://localhost:27017/).
+
+KANEDA_MONGO_HOST (=None)
   Server host.
 
-KANEDA_MONGO_PORT (=27017)
+KANEDA_MONGO_PORT (=None)
   Server port.
 
 KANEDA_MONGO_TIMEOUT (=300)
   MongoDB connection timeout (milliseconds).
+
+Celery
+------
+KANEDA_CELERY_BROKER (='')
+  Broker connection url.
+
+KANEDA_CELERY_QUEUE_NAME (='')
+  Name of the Celery queue.
+
+RQ
+--
+KANEDA_RQ_REDIS_URL (='')
+  Redis connection url.
+
+KANEDA_RQ_QUEUE_NAME (='kaneda')
+  Name of the RQ queue.
 
 Debug
 -----

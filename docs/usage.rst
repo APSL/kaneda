@@ -36,7 +36,7 @@ Asynchronous reporting
 Depending the selection of the backend the process of reporting metrics could be "slow" if the response time of your
 application is critical (e.g: a website). Furthermore if your application doesn't need the see the reported metrics
 in real time you probably have to consider to using asynchronous reporting. With this system you are allowed to send a
-metric report in background without affecting your performance.
+metric report in background without adding too much overhead.
 
 To use this system you need to install a queue system and use one of the builtin Kaneda :ref:`queues` classes.
 To setup Kaneda in async mode follow these steps.
@@ -79,5 +79,5 @@ As in the backend example it can be used passing a queue client::
     q = Queue(queue_name, connection=Redis())
     queue = RQQueue(queue=q)
 
-Notice that you are able to specify a Redis connection url (or a broker url if you use :ref:`Celery`). Notice this allows you
+Also you are able to specify a Redis connection url (or a broker url if you use :ref:`Celery`). Notice this allows you
 to run the worker on a different server.

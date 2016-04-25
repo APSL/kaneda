@@ -16,10 +16,10 @@ Example::
    :hidden:
 
    usage
-   django
    metrics
    backends
    queues
    settings
+   django
    changelog
 
