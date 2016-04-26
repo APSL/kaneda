@@ -4,8 +4,9 @@ import pytest
 from elasticsearch import Elasticsearch
 from pymongo import MongoClient
 import rethinkdb as r
+from influxdb import InfluxDBClient
 
-from kaneda.backends import ElasticsearchBackend, LoggerBackend, MongoBackend, RethinkBackend
+from kaneda.backends import ElasticsearchBackend, LoggerBackend, MongoBackend, RethinkBackend, InfluxBackend
 from kaneda.queues import CeleryQueue, RQQueue
 
 
@@ -81,6 +82,32 @@ def rethink_backend_connection(rethink_settings):
 def rethink_clients():
     from tests.conftest import rethink_settings
     return [rethink_backend(rethink_settings()).connection, rethink_backend_connection(rethink_settings()).connection]
+
+
+@pytest.fixture
+def influx_backend(influx_settings):
+    return InfluxBackend(database=influx_settings.INFLUX_DATABASE, host=influx_settings.INFLUX_HOST,
+                         port=influx_settings.INFLUX_PORT, username=influx_settings.INFLUX_USERNAME,
+                         password=influx_settings.INFLUX_PASSWORD)
+
+
+@pytest.fixture
+def influx_backend_client(influx_settings):
+    client = InfluxDBClient(host=influx_settings.INFLUX_HOST, port=influx_settings.INFLUX_PORT,
+                            username=influx_settings.INFLUX_USERNAME, password=influx_settings.INFLUX_PASSWORD,
+                            database=influx_settings.INFLUX_DATABASE)
+    return InfluxBackend(database=influx_settings.INFLUX_DATABASE, client=client)
+
+
+@pytest.fixture
+def influx_backend_url(influx_settings):
+    return InfluxBackend(database=influx_settings.INFLUX_DATABASE, connection_url=influx_settings.INFLUX_CONNECTION_URL)
+
+
+def influx_clients():
+    from tests.conftest import influx_settings
+    return [influx_backend(influx_settings()).client, influx_backend_client(influx_settings()).client,
+            influx_backend_url(influx_settings()).client]
 
 
 @pytest.fixture

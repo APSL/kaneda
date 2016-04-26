@@ -13,8 +13,11 @@ class BaseBackend(object):
     def report(self, name, metric, value, tags, id_):
         raise NotImplemented()
 
+    def _get_host_name(self):
+        return socket.gethostname()
+
     def _get_payload(self, name, value, tags):
-        payload = {'host': socket.gethostname(), 'name': name}
+        payload = {'host': self._get_host_name(), 'name': name}
         if isinstance(value, dict):
             payload.update(value)
         else:

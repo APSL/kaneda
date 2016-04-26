@@ -30,6 +30,15 @@ RETHINK_USER = getattr(settings, 'KANEDA_RETHINK_USER', None)
 RETHINK_PASSWORD = getattr(settings, 'KANEDA_RETHINK_PASSWORD', None)
 RETHINK_TIMEOUT = getattr(settings, 'KANEDA_RETHINK_TIMEOUT', 300)
 
+# InfluxDB backend settings
+INFLUX_DATABASE = getattr(settings, 'KANEDA_INFLUX_DATABASE', 'kaneda')
+INFLUX_CONNECTION_URL = getattr(settings, 'KANEDA_INFLUX_CONNECTION_URL', None)
+INFLUX_HOST = getattr(settings, 'KANEDA_INFLUX_HOST', None)
+INFLUX_PORT = getattr(settings, 'KANEDA_INFLUX_PORT', None)
+INFLUX_USERNAME = getattr(settings, 'KANEDA_INFLUX_USERNAME', None)
+INFLUX_PASSWORD = getattr(settings, 'KANEDA_INFLUX_PASSWORD', None)
+INFLUX_TIMEOUT = getattr(settings, 'KANEDA_INFLUX_TIMEOUT', 300)
+
 # Debug backend mode settings
 DEBUG = getattr(settings, 'KANEDA_DEBUG', False)
 LOGGER = getattr(settings, 'KANEDA_LOGGER', None)

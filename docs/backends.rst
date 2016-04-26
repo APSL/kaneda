@@ -52,6 +52,43 @@ RethinkDB is an open source scalable, distributed NoSQL database built for realt
 .. autoclass:: kaneda.backends.RethinkBackend
     :members:
 
+
+InfluxDB
+~~~~~~~~
+
+InfluxDB is an open source time series database with no external dependencies. It's useful for recording metrics,
+events, and performing analytics.
+
+.. note::
+
+    Before using InfluxDB as backend you need to install InfluxDB Python client::
+
+        pip install influxdb
+
+.. warning::
+
+    InfluxDB can store other type of data besides time series. However it has some restrictions:
+
+    * Metrics *tags* field can't be a :code:`list` only a :code:`dict`::
+
+         # bad
+         metrics.timing('user.profile_load_time', 230, tags=['login', 'edit_profile'])
+
+         # good
+         metrics.timing('user.profile_load_time', 230, tags={'from': 'login', 'to': 'edit_profile'})
+
+    * :any:`Custom <kaneda.base.Metrics.custom>` metric *value* field can’t be a :code:`list` nor a nested :code:`dict`::
+
+         # bad
+         metrics.custom('zone.search', metric='query_time', value={'times': [120, 230]})
+         metrics.custom('zone.search', metric='query_time', value={'times': {'start': 120}, {'end': 230}})
+
+         # good
+         metrics.custom('zone.search', metric='query_time', value={'start_time': 120, 'end_time': 230})
+
+.. autoclass:: kaneda.backends.InfluxBackend
+    :members:
+
 Logger
 ~~~~~~
 

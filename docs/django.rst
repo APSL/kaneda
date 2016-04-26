@@ -143,6 +143,29 @@ KANEDA_RETHINK_PASSWORD (=None)
 KANEDA_RETHINK_TIMEOUT (=0.3)
   RethinkDB connection timeout (seconds).
 
+InfluxDB
+--------
+KANEDA_INFLUX_DATABASE (='kaneda')
+  Name of the InfluxDB database.
+
+KANEDA_INFLUX_CONNECTION_URL (=None)
+  InfluxDB connection url (influxdb://username:password@localhost:8086/databasename).
+
+KANEDA_INFLUX_HOST (=None)
+  Server host.
+
+KANEDA_INFLUX_PORT (=None)
+  Server port.
+
+KANEDA_INFLUX_USERNAME (=None)
+  Auth username.
+
+KANEDA_INFLUX_PASSWORD (=None)
+  Auth password.
+
+KANEDA_INFLUX_TIMEOUT (=0.3)
+  InfluxDB connection timeout (seconds).
+
 Celery
 ------
 KANEDA_CELERY_BROKER (='')

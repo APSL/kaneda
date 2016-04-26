@@ -32,6 +32,16 @@ class KanedaSettings:
         RETHINK_PORT = 28015
         RETHINK_TIMEOUT = 0.3
 
+    class influx:
+        BACKEND = 'kaneda.backends.InfluxBackend'
+        INFLUX_DATABASE = 'test'
+        INFLUX_CONNECTION_URL = 'influxdb://root:root@localhost:8086/test'
+        INFLUX_HOST = 'localhost'
+        INFLUX_PORT = 8086
+        INFLUX_USERNAME = 'root'
+        INFLUX_PASSWORD = 'root'
+        INFLUX_TIMEOUT = 300
+
     class rq:
         QUEUE = 'kaneda.queues.RQQueue'
         RQ_REDIS_URL = 'redis://localhost:6379/1'
@@ -61,6 +71,11 @@ def mongo_settings():
 @pytest.fixture
 def rethink_settings():
     return KanedaSettings.rethink
+
+
+@pytest.fixture
+def influx_settings():
+    return KanedaSettings.influx
 
 
 @pytest.fixture

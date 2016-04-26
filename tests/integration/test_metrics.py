@@ -21,6 +21,11 @@ class TestMetrics(object):
         assert result
         assert result['inserted'] == 1
 
+    def test_influx_metric(self, influx_backend):
+        metrics = Metrics(backend=influx_backend)
+        result = metrics.gauge('test_gauge', 42)
+        assert result
+
     def test_logger_metric(self, logger_backend, logger_filename):
         metrics = Metrics(backend=logger_backend)
         metrics.gauge('test_gauge', 42)

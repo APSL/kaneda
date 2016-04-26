@@ -24,6 +24,7 @@ BACKEND
   * :code:`kaneda.backends.MongoBackend`
   * :code:`kaneda.backends.LoggerBackend`
   * :code:`kaneda.backends.RethinkBackend`
+  * :code:`kaneda.backends.InfluxBackend`
 
 Elasticsearch
 -------------
@@ -93,6 +94,29 @@ RETHINK_PASSWORD
 
 RETHINK_TIMEOUT
   RethinkDB connection timeout (seconds).
+
+InfluxDB
+--------
+INFLUX_DATABASE
+  Name of the InfluxDB database.
+
+INFLUX_CONNECTION_URL
+  InfluxDB connection url (influxdb://username:password@localhost:8086/databasename).
+
+INFLUX_HOST
+  Server host.
+
+INFLUX_PORT
+  Server port.
+
+INFLUX_USERNAME
+  Auth username.
+
+INFLUX_PASSWORD
+  Auth password.
+
+INFLUX_TIMEOUT
+  InfluxDB connection timeout (seconds).
 
 Logger
 ------
