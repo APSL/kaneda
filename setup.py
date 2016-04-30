@@ -40,6 +40,14 @@ setup(
     long_description=codecs.open(os.path.join(os.path.dirname(__file__), 'README.rst'), encoding='utf-8').read(),
     author=get_author('kaneda'),
     author_email=get_email('kaneda'),
+    entry_points={
+        'console_scripts': [
+            'zmqworker = kaneda.tasks:zmq_task',
+        ],
+    },
+    install_requires=[
+        'click==6.6',
+    ],
     classifiers=[
         'Intended Audience :: Developers',
         'Programming Language :: Python',

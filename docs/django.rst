@@ -182,6 +182,14 @@ KANEDA_RQ_REDIS_URL (='')
 KANEDA_RQ_QUEUE_NAME (='kaneda')
   Name of the RQ queue.
 
+ZMQ
+---
+KANEDA_ZMQ_CONNECTION_URL (='')
+  ZMQ connection url.
+
+KANEDA_ZMQ_TIMEOUT (=300)
+  ZMQ socket timeout (milliseconds).
+
 Debug
 -----
 KANEDA_DEBUG (=True)

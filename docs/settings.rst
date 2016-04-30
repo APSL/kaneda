@@ -133,6 +133,7 @@ QUEUE
 
   * :code:`kaneda.backends.CeleryQueue`
   * :code:`kaneda.backends.RQQueue`
+  * :code:`kaneda.backends.ZMQQueue`
 
 Celery
 ------
@@ -149,3 +150,13 @@ RQ_REDIS_URL
 
 RQ_QUEUE_NAME
   Name of the RQ queue.
+
+.. _zmq_settings:
+
+ZMQ
+---
+ZMQ_CONNECTION_URL
+  ZMQ connection url.
+
+ZMQ_TIMEOUT
+  ZMQ socket timeout (milliseconds).

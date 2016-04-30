@@ -7,7 +7,7 @@ import rethinkdb as r
 from influxdb import InfluxDBClient
 
 from kaneda.backends import ElasticsearchBackend, LoggerBackend, MongoBackend, RethinkBackend, InfluxBackend
-from kaneda.queues import CeleryQueue, RQQueue
+from kaneda.queues import CeleryQueue, RQQueue, ZMQQueue
 
 
 @pytest.fixture
@@ -128,3 +128,8 @@ def celery_queue(celery_settings):
 @pytest.fixture
 def rq_queue(rq_settings):
     return RQQueue(redis_url=rq_settings.RQ_REDIS_URL)
+
+
+@pytest.fixture
+def zmq_queue(zmq_settings):
+    return ZMQQueue(connection_url=zmq_settings.ZMQ_CONNECTION_URL)

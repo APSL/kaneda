@@ -52,3 +52,27 @@ The default queue is "kaneda".
 
 .. autoclass:: kaneda.queues.RQQueue
     :members:
+
+ZMQ
+~~~
+
+ZMQ (or ZeroMQ) is a library which extends the standard socket interfaces with features traditionally provided by
+specialised messaging middleware products. ZeroMQ sockets provide an abstraction of asynchronous message queues and much
+more.
+
+.. note::
+
+    Before using ZMQ as async queue you need to install ZMQ library::
+
+        pip install pyzmq
+
+To run the worker execute this command::
+
+        zmqworker --connection_url=<zmq_connection_url>
+
+or define :ref:`zmq_settings` settings in :file:`kanedasettings.py` and simply execute the worker command with::
+
+        zmqworker
+
+.. autoclass:: kaneda.queues.ZMQQueue
+    :members:

@@ -52,6 +52,11 @@ class KanedaSettings:
         CELERY_BROKER = 'redis://localhost:6379/1'
         CELERY_QUEUE_NAME = ''
 
+    class zmq:
+        QUEUE = 'kaneda.queues.ZMQQueue'
+        ZMQ_CONNECTION_URL = 'tcp://127.0.0.1:5555'
+        ZMQ_TIMEOUT = 300
+
 
 @pytest.fixture
 def kaneda_settings():
@@ -86,6 +91,11 @@ def celery_settings():
 @pytest.fixture
 def rq_settings():
     return KanedaSettings.rq
+
+
+@pytest.fixture
+def zmq_settings():
+    return KanedaSettings.zmq
 
 
 def pytest_addoption(parser):

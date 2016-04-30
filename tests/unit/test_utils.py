@@ -1,7 +1,7 @@
 import pytest
 
 from kaneda.exceptions import SettingsError, UnexistingKanedaClass
-from kaneda.queues import RQQueue, CeleryQueue
+from kaneda.queues import RQQueue, CeleryQueue, ZMQQueue
 from kaneda.utils import import_class, get_object_from_settings, get_kaneda_objects, get_backend
 from kaneda.backends import ElasticsearchBackend, MongoBackend, LoggerBackend, RethinkBackend, InfluxBackend
 
@@ -22,7 +22,8 @@ class TestUtils(object):
 
     @pytest.mark.parametrize('queue_path_module, queue_class', [
         ('kaneda.queues.RQQueue', RQQueue),
-        ('kaneda.queues.CeleryQueue', CeleryQueue)
+        ('kaneda.queues.CeleryQueue', CeleryQueue),
+        ('kaneda.queues.ZMQQueue', ZMQQueue),
     ])
     def test_import_queue_class(self, queue_path_module, queue_class):
         assert import_class(queue_path_module) is queue_class
@@ -40,6 +41,7 @@ class TestUtils(object):
     @pytest.mark.parametrize('queue_name, queue_class', [
         ('rq', RQQueue),
         ('celery', CeleryQueue),
+        ('zmq', ZMQQueue),
     ])
     def test_get_queue_from_settings(self, kaneda_settings, queue_name, queue_class):
         queue_settings = getattr(kaneda_settings, queue_name)

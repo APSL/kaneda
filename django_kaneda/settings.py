@@ -51,3 +51,7 @@ CELERY_QUEUE_NAME = getattr(settings, 'KANEDA_CELERY_QUEUE_NAME', '')
 # RQ queue settings
 RQ_REDIS_URL = getattr(settings, 'KANEDA_RQ_REDIS_URL', 'kaneda')
 RQ_QUEUE_NAME = getattr(settings, 'KANEDA_RQ_QUEUE_NAME', None)
+
+# ZMQ queue settings
+ZMQ_CONNECTION_URL = getattr(settings, 'KANEDA_ZMQ_CONNECTION_URL', '')
+ZMQ_TIMEOUT = getattr(settings, 'KANEDA_ZMQ_TIMEOUT', 300)
