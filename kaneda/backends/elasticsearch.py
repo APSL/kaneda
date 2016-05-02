@@ -17,11 +17,13 @@ class ElasticsearchBackend(BaseBackend):
     """
     Elasticsearch backend.
 
-    :param index_name: name of the Elasticsearch index used to store metrics data. Default name format will be app_name-YYYY.MM.DD.
+    :param index_name: name of the Elasticsearch index used to store metrics data. Default name format will be \
+    index_name-YYYY.MM.DD.
     :param app_name: name of the app/project where metrics are used.
     :param client: client instance of Elasticsearch class.
-    :param connection_url: Elasticsearch connection url (https://user:secret@localhost:9200).
-    :param host: server host.
+    :param connection_url: Elasticsearch connection url (https://user:secret@localhost:9200). \
+    It can be used passing a single connection_url (a string) or passing multiple connection_urls (a list).
+    :param host: server host. It can be used passing a single host (a string) or passing multiple hosts (a list).
     :param port: server port.
     :param username: http auth username.
     :param password: http auth password.
@@ -38,9 +40,13 @@ class ElasticsearchBackend(BaseBackend):
                 raise ImproperlyConfigured('"client" parameter is not an instance of Elasticsearch client')
             self.client = client
         elif connection_url:
-            self.client = Elasticsearch([connection_url], timeout=timeout)
+            if not isinstance(connection_url, list):
+                connection_url = [connection_url]
+            self.client = Elasticsearch(connection_url, timeout=timeout)
         else:
-            self.client = Elasticsearch([host], port=port, http_auth=(username, password), timeout=timeout)
+            if not isinstance(host, list):
+                host = [host]
+            self.client = Elasticsearch(host, port=port, http_auth=(username, password), timeout=timeout)
         self.index_name = index_name
         self.app_name = app_name
 
