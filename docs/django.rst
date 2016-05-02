@@ -120,6 +120,29 @@ KANEDA_MONGO_PORT (=None)
 KANEDA_MONGO_TIMEOUT (=300)
   MongoDB connection timeout (milliseconds).
 
+RethinkDB
+---------
+KANEDA_RETHINK_DB (='kaneda')
+  Name of the RethinkDB database
+
+KANEDA_RETHINK_TABLE_NAME (=None)
+  Name of the RethinkDB table. If this is not provided, it will be used the name of the metric.
+
+KANEDA_RETHINK_HOST (=None)
+  Server host.
+
+KANEDA_RETHINK_PORT (=None)
+  Server port.
+
+KANEDA_RETHINK_USER (=None)
+  Auth username.
+
+KANEDA_RETHINK_PASSWORD (=None)
+  Auth password.
+
+KANEDA_RETHINK_TIMEOUT (=0.3)
+  RethinkDB connection timeout (seconds).
+
 Celery
 ------
 KANEDA_CELERY_BROKER (='')

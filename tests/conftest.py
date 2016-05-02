@@ -25,6 +25,13 @@ class KanedaSettings:
         MONGO_PORT = 27017
         MONGO_TIMEOUT = 300
 
+    class rethink:
+        BACKEND = 'kaneda.backends.RethinkBackend'
+        RETHINK_DB = 'kaneda_test'
+        RETHINK_HOST = 'localhost'
+        RETHINK_PORT = 28015
+        RETHINK_TIMEOUT = 0.3
+
     class rq:
         QUEUE = 'kaneda.queues.RQQueue'
         RQ_REDIS_URL = 'redis://localhost:6379/1'
@@ -49,6 +56,11 @@ def elastic_settings():
 @pytest.fixture
 def mongo_settings():
     return KanedaSettings.mongo
+
+
+@pytest.fixture
+def rethink_settings():
+    return KanedaSettings.rethink
 
 
 @pytest.fixture

@@ -3,8 +3,9 @@ from datetime import datetime
 import pytest
 from elasticsearch import Elasticsearch
 from pymongo import MongoClient
+import rethinkdb as r
 
-from kaneda.backends import ElasticsearchBackend, LoggerBackend, MongoBackend
+from kaneda.backends import ElasticsearchBackend, LoggerBackend, MongoBackend, RethinkBackend
 from kaneda.queues import CeleryQueue, RQQueue
 
 
@@ -62,6 +63,24 @@ def mongo_clients():
     from tests.conftest import mongo_settings
     return [mongo_backend(mongo_settings()).client, mongo_backend_client(mongo_settings()).client,
             mongo_backend_url(mongo_settings()).client]
+
+
+@pytest.fixture
+def rethink_backend(rethink_settings):
+    return RethinkBackend(db=rethink_settings.RETHINK_DB, host=rethink_settings.RETHINK_HOST,
+                          port=rethink_settings.RETHINK_PORT, timeout=rethink_settings.RETHINK_TIMEOUT)
+
+
+@pytest.fixture
+def rethink_backend_connection(rethink_settings):
+    connection = r.connect(host=rethink_settings.RETHINK_HOST, port=rethink_settings.RETHINK_PORT,
+                           db=rethink_settings.RETHINK_DB, timeout=rethink_settings.RETHINK_TIMEOUT)
+    return RethinkBackend(db=rethink_settings.RETHINK_DB, connection=connection)
+
+
+def rethink_clients():
+    from tests.conftest import rethink_settings
+    return [rethink_backend(rethink_settings()).connection, rethink_backend_connection(rethink_settings()).connection]
 
 
 @pytest.fixture

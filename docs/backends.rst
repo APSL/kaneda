@@ -37,6 +37,20 @@ to perform data analysis.
 .. autoclass:: kaneda.backends.MongoBackend
     :members:
 
+RethinkDB
+~~~~~~~~~
+
+RethinkDB is an open source scalable, distributed NoSQL database built for realtime applications.
+
+.. note::
+
+    Before using RethinkDB as backend you need to install RethinkDB Python client::
+
+        pip install rethinkdb
+
+
+.. autoclass:: kaneda.backends.RethinkBackend
+    :members:
 
 Logger
 ~~~~~~

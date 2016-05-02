@@ -21,6 +21,15 @@ MONGO_HOST = getattr(settings, 'KANEDA_MONGO_HOST', None)
 MONGO_PORT = getattr(settings, 'KANEDA_MONGO_PORT', None)
 MONGO_TIMEOUT = getattr(settings, 'KANEDA_MONGO_TIMEOUT', 300)
 
+# RethinkDB backend settings
+RETHINK_DB = getattr(settings, 'KANEDA_RETHINK_DB', 'kaneda')
+RETHINK_TABLE_NAME = getattr(settings, 'KANEDA_RETHINK_TABLE_NAME', None)
+RETHINK_HOST = getattr(settings, 'KANEDA_RETHINK_HOST', None)
+RETHINK_PORT = getattr(settings, 'KANEDA_RETHINK_PORT', None)
+RETHINK_USER = getattr(settings, 'KANEDA_RETHINK_USER', None)
+RETHINK_PASSWORD = getattr(settings, 'KANEDA_RETHINK_PASSWORD', None)
+RETHINK_TIMEOUT = getattr(settings, 'KANEDA_RETHINK_TIMEOUT', 300)
+
 # Debug backend mode settings
 DEBUG = getattr(settings, 'KANEDA_DEBUG', False)
 LOGGER = getattr(settings, 'KANEDA_LOGGER', None)

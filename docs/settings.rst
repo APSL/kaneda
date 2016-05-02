@@ -23,6 +23,7 @@ BACKEND
   * :code:`kaneda.backends.ElasticsearchBackend`
   * :code:`kaneda.backends.MongoBackend`
   * :code:`kaneda.backends.LoggerBackend`
+  * :code:`kaneda.backends.RethinkBackend`
 
 Elasticsearch
 -------------
@@ -69,6 +70,29 @@ MONGO_PORT
 
 MONGO_TIMEOUT
   MongoDB connection timeout (milliseconds).
+
+RethinkDB
+---------
+RETHINK_DB
+  Name of the RethinkDB database
+
+RETHINK_TABLE_NAME
+  Name of the RethinkDB table. If this is not provided, it will be used the name of the metric.
+
+RETHINK_HOST
+  Server host.
+
+RETHINK_PORT
+  Server port.
+
+RETHINK_USER
+  Auth username.
+
+RETHINK_PASSWORD
+  Auth password.
+
+RETHINK_TIMEOUT
+  RethinkDB connection timeout (seconds).
 
 Logger
 ------

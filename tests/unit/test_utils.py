@@ -3,7 +3,7 @@ import pytest
 from kaneda.exceptions import SettingsError, UnexistingKanedaClass
 from kaneda.queues import RQQueue, CeleryQueue
 from kaneda.utils import import_class, get_object_from_settings, get_kaneda_objects, get_backend
-from kaneda.backends import ElasticsearchBackend, MongoBackend, LoggerBackend
+from kaneda.backends import ElasticsearchBackend, MongoBackend, LoggerBackend, RethinkBackend
 
 from .conftest import empty_settings
 
@@ -13,7 +13,8 @@ class TestUtils(object):
     @pytest.mark.parametrize('backend_path_module, backend_class', [
         ('kaneda.backends.ElasticsearchBackend', ElasticsearchBackend),
         ('kaneda.backends.MongoBackend', MongoBackend),
-        ('kaneda.backends.LoggerBackend', LoggerBackend)
+        ('kaneda.backends.LoggerBackend', LoggerBackend),
+        ('kaneda.backends.RethinkBackend', RethinkBackend)
     ])
     def test_import_backend_class(self, backend_path_module, backend_class):
         assert import_class(backend_path_module) is backend_class
@@ -28,6 +29,7 @@ class TestUtils(object):
     @pytest.mark.parametrize('backend_name, backend_class', [
         ('elastic', ElasticsearchBackend),
         ('mongo', MongoBackend),
+        ('rethink', RethinkBackend),
     ])
     def test_get_backend_from_settings(self, kaneda_settings, backend_name, backend_class):
         backend_settings = getattr(kaneda_settings, backend_name)
