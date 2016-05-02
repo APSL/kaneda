@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.3.1 (2016-05-02)
+~~~~~~~~~~~~~~~~
+*  ElasticBackend now can be configured passing a list of 'hosts' or a list of 'connection_urls'.
+
 0.3 (2016-03-28)
 ~~~~~~~~~~~~~~~~
 * Add LoggerBackend. Useful for debugging
