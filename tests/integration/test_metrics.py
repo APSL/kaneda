@@ -24,5 +24,3 @@ class TestMetrics(object):
             result = lines[-1].split(' - ')[2]
             assert result
             assert 'test_gauge' in result
-
-

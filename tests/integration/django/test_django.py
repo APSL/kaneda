@@ -1,6 +1,6 @@
 from kaneda.backends import LoggerBackend, ElasticsearchBackend
 from kaneda.queues import CeleryQueue
-from django_kaneda import settings
+from django_kaneda import settings  # NOQA
 
 
 class TestDjango(object):

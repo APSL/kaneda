@@ -26,4 +26,3 @@ class TestBackends(object):
                              value={'val0': 1, 'val2': 'str', 'val3': [1, 2]}, tags=['tag1', 'tags2'])
         reported_data = dummy_backend.reported_data['test.structured']
         assert reported_data == structured_payload
-

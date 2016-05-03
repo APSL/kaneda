@@ -1,3 +1,3 @@
-from .base import BaseQueue
-from .celery import CeleryQueue
-from .rq import RQQueue
+from .base import BaseQueue  # NOQA
+from .celery import CeleryQueue  # NOQA
+from .rq import RQQueue  # NOQA

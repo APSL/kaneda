@@ -40,4 +40,3 @@ class CeleryQueue(BaseQueue):
         except Exception as e:
             logger = logging.getLogger(__name__)
             logger.exception(e)
-

@@ -3,7 +3,7 @@ from __future__ import absolute_import
 from time import time
 from functools import wraps
 
-from kaneda.utils import get_backend, get_kaneda_objects
+from kaneda.utils import get_kaneda_objects
 
 
 class Metrics(object):
@@ -65,7 +65,7 @@ class Metrics(object):
         """
         Send a custom metric report.
 
-        >>> metrics.custom('hotel.availability.response_data', metric='xml', value={'status': 'ok', 'xml': ...}, id_='2B75D750')
+        >>> metrics.custom('hotel.response_data', metric='xml', value={'status': 'ok', 'xml': ...}, id_='2B75D750')
         """
         self._report(name, metric, value, tags, id_)
 
@@ -124,4 +124,3 @@ class Metrics(object):
             return self.backend.report(name, metric, value, tags, id_)
         elif self.queue:
             return self.queue.report(name, metric, value, tags, id_)
-

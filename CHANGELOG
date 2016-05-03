@@ -4,7 +4,7 @@ Changelog
 0.4 (2016-04-28)
 ~~~~~~~~~~~~~~~~
 Add support to run Kaneda in asynchronous mode.
----------------------------------------------
+-----------------------------------------------
 * Add Celery and RQ queue classes and tasks with backend reporting.
 * Add the option to configure Kaneda with a settings file.
 * Add utils.py file to  handle the settings.
@@ -18,7 +18,7 @@ Add Django support.
 * Improve Django documentation
 
 0.3.1 (2016-03-29)
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 *  ElasticBackend now can be configured passing a list of 'hosts' or a list of 'connection_urls'.
 
 0.3 (2016-03-28)

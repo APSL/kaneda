@@ -22,4 +22,3 @@ class BaseBackend(object):
         if tags:
             payload['tags'] = tags
         return payload
-
