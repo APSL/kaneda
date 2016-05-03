@@ -13,7 +13,7 @@ def elasticsearch_backend(elastic_settings):
     return ElasticsearchBackend(index_name=elastic_settings.ELASTIC_INDEX_NAME,
                                 app_name=elastic_settings.ELASTIC_APP_NAME, host=elastic_settings.ELASTIC_HOST,
                                 port=elastic_settings.ELASTIC_PORT, user=elastic_settings.ELASTIC_USER,
-                                password=elastic_settings.ELASTIC_PASSWORD)
+                                password=elastic_settings.ELASTIC_PASSWORD, timeout=elastic_settings.ELASTIC_TIMEOUT)
 
 
 @pytest.fixture

@@ -14,7 +14,7 @@ class KanedaSettings:
         ELASTIC_PORT = 9200
         ELASTIC_USER = 'test'
         ELASTIC_PASSWORD = 'test'
-        ELASTIC_TIMEOUT = 0.3
+        ELASTIC_TIMEOUT = 10
 
     class mongo:
         BACKEND = 'kaneda.backends.MongoBackend'
