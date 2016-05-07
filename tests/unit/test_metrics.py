@@ -49,13 +49,13 @@ class TestMetrics(object):
         self.assert_reported_data(dummy_backend, 'xml_response', 'availability.request', value)
 
     def test_timed_context_manager(self, metrics, dummy_backend):
-        value = 10
+        value = 100
         with metrics.timed('user.query.time', use_ms=True):
             sleep(value / 1000.0)  # in ms
         self.assert_reported_data(dummy_backend, 'timing', 'user.query.time', value)
 
     def test_timed_decorator(self, metrics, dummy_backend):
-        value = 0.01
+        value = 0.1
 
         @metrics.timed(use_ms=False)
         def get_user():
