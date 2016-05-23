@@ -1,7 +1,7 @@
 Kaneda
 ======
 
-Kaneda is a Python library that allows to get, report and store events and metrics of your applications.
+Kaneda is a Python library that allows to report events and metrics of your applications.
 It provides a several builtin :doc:`metrics` methods in order to store any amount of data that you want to then
 analyze it or for performance studies
 

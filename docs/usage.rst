@@ -3,7 +3,7 @@ Usage
 
 You need to install `Kaneda` package::
 
-    pip install git+https://gitlab.apsl.net/apsl/kaneda.git
+    pip install kaneda
 
 
 Backend reporting

@@ -36,7 +36,7 @@ setup(
     version=get_version('kaneda'),
     packages=find_packages(),
     include_package_data=True,
-    description='Simple metric reporter with customizable backends',
+    description='Configurable Python library for metrics and events reporting',
     long_description=codecs.open(os.path.join(os.path.dirname(__file__), 'README.rst'), encoding='utf-8').read(),
     author=get_author('kaneda'),
     author_email=get_email('kaneda'),
