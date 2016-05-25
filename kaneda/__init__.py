@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 __author__ = 'Marc Tudurí'
 __email__ = 'mtuduri@apsl.net'
-__version__ = '0.4'
+__version__ = '0.5'
 
 import logging  # NOQA
 
