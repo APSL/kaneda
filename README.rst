@@ -8,10 +8,10 @@ Kaneda
     :target: https://readthedocs.org/projects/kaneda/?badge=latest    
 
 Kaneda is a Python library that allows to report events and metrics of your applications.
-It provides a several builtin :doc:`metrics` methods in order to store any amount of data that you want to then
+It provides a several builtin `metrics <http://kaneda.readthedocs.io/en/latest/metrics.html>`_ methods in order to store any amount of data that you want to then
 analyze it or for performance studies.
 
-Basic usage
+Usage
 ~~~~~~~~~~~
 
 First of all, you need to install `Kaneda` package::
