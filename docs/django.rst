@@ -19,7 +19,7 @@ Kaneda can be use with Django as a mechanism to reporting metrics and events.
 
 Alternatively you can set :code:`KANEDA_QUEUE` to specify a :ref:`queue <queues>` configuration to use Kaneda in :ref:`async mode <async>`::
 
-    KANEDA_BACKEND = 'kaneda.queues.CeleryQueue'
+    KANEDA_QUEUE = 'kaneda.queues.CeleryQueue'
     KANEDA_CELERY_BROKER = 'redis://localhost:6379/0'
 
 With this, you can use Kaneda in everyplace of your Django project::
