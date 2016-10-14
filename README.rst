@@ -39,3 +39,6 @@ Features
 * Builtin Celery, RQ and ZMQ asynchronous queue classes.
 * Django support.
 
+Documentation
+~~~~~~~~~~~~~
+Visit the `documentation <http://kaneda.readthedocs.org>`_ for an in-depth look at Kaneda.
