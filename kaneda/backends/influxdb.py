@@ -37,7 +37,7 @@ class InfluxBackend(BaseBackend):
                 raise ImproperlyConfigured('"client" parameter is not an instance of InfluxDBClient client.')
             self.client = client
         elif connection_url:
-            self.client = InfluxDBClient.from_DSN(connection_url, timeout=timeout)
+            self.client = InfluxDBClient.from_dsn(connection_url, timeout=timeout)
         else:
             self.client = InfluxDBClient(host=host, port=port, username=username, password=password,
                                          database=database, timeout=timeout)
