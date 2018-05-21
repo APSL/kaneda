@@ -1,5 +1,12 @@
 Changelog
 =========
+
+1.0 (2018-05-20)
+~~~~~~~~~~~~~~~~
+* Add support for Django 2.0.
+* Fix issues with InfluxDB backend.
+* Fix issues with RethinkDB backend
+
 0.5 (2016-05-25)
 ~~~~~~~~~~~~~~~~
 * Add InfluxDB reporting backend.
