@@ -23,7 +23,7 @@ The following example it shows how to send metrics with Elasticsearch as a backe
 
 .. code-block:: python
 
-    from kaneda.backend import ElasticsearchBackend
+    from kaneda.backends import ElasticsearchBackend
     from kaneda import Metrics
 
     backend = ElasticsearchBackend(index_name='myindex', app_name='myapp', host='localhost',
